@@ -12,4 +12,9 @@ public class MainController {
         model.addAttribute("msg", "Mantap");
         return "index";
     }
+
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
 }
