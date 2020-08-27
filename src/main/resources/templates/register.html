@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<style>
+	.form-container {
+		padding: 40px 20px 20px 20px;
+		border-radius: 10px;
+		box-shadow: 0px 0px 10px 0px #f1c40f;
+	}
+	.container-fluid {padding-top: 30px}
+</style>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1c40f;">
+	  <a class="navbar-brand" href="#">Jemalcult Agency</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+	  aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Link</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Contact us</a>
+	      </li>
+	    </ul>
+	  </div>
+</nav>
+
+<section class="container-fluid">
+	<section class="row justify-content-center">
+		<section class="col-12 col-sm-6 col-md-3">
+	    	<form class="form-container">
+	    		<h1>Register here</h1><br>
+				<div class="form-group">
+				    <label for="exampleInputEmail">Email address</label>
+				    <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				</div>
+				<div class="form-group">
+				    <label for="exampleInputPhone">Phone number</label>
+				    <input type="Phone" class="form-control" id="exampleInputPhone">
+				</div>
+				<div class="form-group">
+				    <label for="exampleInputPassword">Password</label>
+				    <input type="password" class="form-control" id="exampleInputPassword">
+				</div>
+				<div class="form-group form-check">
+				    <input type="checkbox" class="form-check-input" id="exampleCheck">
+				    <label class="form-check-label" for="exampleCheck">Check me out</label>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</section>
+	</section>
+</section>
+
+</body>
+</html>
