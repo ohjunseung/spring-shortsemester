@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="header"></div>
     <script>
         document.addEventListener("DOMContentLoaded", setMsg);
         function setMsg() {
             let path = window.location.pathname;
             document.querySelector("#error").innerText = `404 ${path} Not Found!`;
         }
+
     </script>
 </head>
 <body>
-    <h1 id="error">
-        404 Not Found
-    </h1>
+<h1 id="error">
+    404 Not Found
+</h1>
 </body>
 </html>
