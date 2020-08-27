@@ -17,8 +17,12 @@ public class HouseController {
     private HouseRepository repository;
 
     @GetMapping(path = {"/", ""})
+    @ResponseBody
     public String index() {
-        return "index";
+        Iterable<House> houses = repository.findAll();
+        StringBuilder builder = new StringBuilder();
+        houses.forEach(house -> builder.append(house.toString()).append("\n"));
+        return builder.toString();
     }
 
     @GetMapping("/{id}")
