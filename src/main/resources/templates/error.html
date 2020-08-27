@@ -6,14 +6,24 @@
         document.addEventListener("DOMContentLoaded", setMsg);
         function setMsg() {
             let path = window.location.pathname;
-            document.querySelector("#error").innerText = `404 ${path} Not Found!`;
+            document.querySelector("#error").innerText = `${path} Not Found!`;
         }
-
     </script>
+    <style>
+        h1 {
+            font-size: 5rem;
+            margin: 1em
+        }
+        p,a {
+            font-size: 2rem
+        }
+    </style>
 </head>
-<body>
-<h1 id="error">
-    404 Not Found
+<body class="text-center">
+<h1>
+    404
 </h1>
+<p id="error"></p>
+<a href="/">Home</a>
 </body>
 </html>
