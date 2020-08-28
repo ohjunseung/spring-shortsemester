@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Admin - Houses</title>
+    <title>Property details</title>
     <div th:replace="header"></div>
 </head>
 <style>
-	td {word-break: break-all;}
-
+	.container {
+		padding: 40px 20px 20px 20px;
+		border-radius: 10px;
+		box-shadow: 0px 0px 10px 0px #f1c40f;
+	}
+	.container-fluid {padding-top: 30px}
 
 </style>
 <body>
@@ -32,30 +36,32 @@
         </ul>
     </div>
 </nav>
-<table class="table">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col" style="width: 5%">#</th>
-        <th scope="col" style="width: 20%">Name</th>
-        <th scope="col" style="width: 25%">Address</th>
-        <th scope="col" style="width: 10%">Price</th>
-        <th class="text-right" style="width: 10%">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="house: ${houses}">
-        <th scope="row" th:text="${house.id}">1</th>
-        <td th:inline="text">
-            <a th:href="@{/house/{id}(id=${house.id})}" th:text="${house.name}">Name</a>
-        </td>
-        <td th:text="${house.address}">Address</td>
-        <td th:text="${house.price}">Price</td>
-        <td class="text-right">
-            <a th:href="@{/house/{id}/edit(id=${house.id})}" class="btn btn-primary">Edit</a>
-            <a th:href="@{/house/{id}/delete(id=${house.id})}" class="btn btn-danger">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+
+<section class="container-fluid">
+    <section class="row justify-content-center">
+        <section class="col-lg-8 col-md-8 col-sm-6">
+            <div class="container">
+                <h1>Property details</h1><br>
+                <div>
+                    <p><b>Name</b></p>
+                    <p th:text="${house.name}"></p>
+                </div>
+                <div>
+                    <p><b>Description</b></p>
+                    <p th:text="${house.desc}"></p>
+                </div>
+                <div>
+                    <p><b>Address</b></p>
+                    <p th:text="${house.address}"></p>
+                </div>
+                <div>
+                    <p><b>Price</b></p>
+                    <p th:text="${house.price}"></p>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>
+
 </body>
 </html>

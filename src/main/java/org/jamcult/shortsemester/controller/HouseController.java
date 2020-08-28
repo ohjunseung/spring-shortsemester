@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
-@Controller //TODO Integerate with View & Validation
+@Controller //TODO Validation, Flash attributes
 @RequestMapping("/house")
 public class HouseController {
     @Autowired
@@ -30,20 +30,20 @@ public class HouseController {
     public String show(@PathVariable int id, Model model) {
         Optional<House> house = repository.findById(id);
         if (house.isPresent()) {
-            model.addAttribute(house);
+            model.addAttribute(house.get());
             return "house-detail";
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(path = {"/", ""})
-    @ResponseStatus(HttpStatus.CREATED)
-    public String create(House house, RedirectAttributes redirectAttributes) {
+    public String create(@ModelAttribute House house, RedirectAttributes redirectAttributes) {
         repository.save(house);
         return "redirect:/house";
     }
 
     @GetMapping("/create")
-    public String createPage() {
+    public String createPage(Model model) {
+        model.addAttribute(new House());
         return "house-create";
     }
 
@@ -51,16 +51,15 @@ public class HouseController {
     public String editPage(@PathVariable int id, Model model) {
         Optional<House> house = repository.findById(id);
         if (house.isPresent()) {
-            model.addAttribute(house);
-            return "house-create";
+            model.addAttribute(house.get());
+            return "house-edit";
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/{id}")
     public String update(@PathVariable int id, House updatedHouse, RedirectAttributes redirectAttributes) {
         Optional<House> house = repository.findById(id);
-        if (house.isPresent() && id == updatedHouse.getId()) {
-            System.out.println(updatedHouse);
+        if (house.isPresent()) {
             repository.save(updatedHouse);
             return "redirect:/house";
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
