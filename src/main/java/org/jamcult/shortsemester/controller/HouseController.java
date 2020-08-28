@@ -19,58 +19,57 @@ public class HouseController {
     private HouseRepository repository;
 
     @GetMapping(path = {"/", ""})
-    @ResponseBody
-    public String index() {
+    public String get(Model model) {
         Iterable<House> houses = repository.findAll();
-        StringBuilder builder = new StringBuilder();
-        houses.forEach(house -> builder.append(house).append("\n"));
-        return builder.toString();
+        model.addAttribute("houses", houses);
+        return "house-index";
     }
 
     @GetMapping("/{id}")
-    @ResponseBody
-    public String get(@PathVariable int id) {
+    public String show(@PathVariable int id, Model model) {
         Optional<House> house = repository.findById(id);
-        if (house.isPresent())
-            return house.get().toString();
-        else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        if (house.isPresent()) {
+            model.addAttribute(house);
+            return "house-detail";
+        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(path = {"/", ""})
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(House house) {
+    public String create(House house) {
         repository.save(house);
-        System.out.println(house);
+        return "house-index";
     }
 
     @GetMapping("/create")
-    public String createPage(Model model) {
-        model.addAttribute("msg", "Create");
-        return "index";
+    public String createPage() {
+        return "house-create";
     }
 
     @GetMapping("/{id}/edit")
     public String editPage(@PathVariable int id, Model model) {
         Optional<House> house = repository.findById(id);
         if (house.isPresent()) {
-            model.addAttribute("msg", id + " Edit");
-            return "index";
+            model.addAttribute(house);
+            return "house-create";
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/{id}")
-    public void update(@PathVariable int id, House updatedHouse) {
+    public String update(@PathVariable int id, House updatedHouse) {
         Optional<House> house = repository.findById(id);
         if (house.isPresent() && id == updatedHouse.getId()) {
             System.out.println(updatedHouse);
             repository.save(updatedHouse);
+            return "house-index";
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}/delete")
-    public void delete(@PathVariable int id) {
+    public String delete(@PathVariable int id) {
         try {
             repository.deleteById(id);
+            return "house-index";
         } catch (EmptyResultDataAccessException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

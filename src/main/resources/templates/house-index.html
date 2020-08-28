@@ -1,70 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Register page</title>
-	<div th:replace="header"></div>
+    <title>Admin - Houses</title>
+    <div th:replace="header"></div>
 </head>
 <style>
 	td {word-break: break-all;}
+
 </style>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1c40f;">
-	  <a class="navbar-brand" href="#">Jemalcult Agency</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-	  aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1c40f;">
+    <a class="navbar-brand" href="#">Jemalcult Agency</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">Link</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">Contact us</a>
-	      </li>
-	    </ul>
-	  </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact us</a>
+            </li>
+        </ul>
+    </div>
 </nav>
-
-	<table class="table">
-		<thead class="thead-light">
-		    <tr>
-		      <th scope="col" style="width: 5%">#</th>
-		      <th scope="col" style="width: 20%">Name</th>
-		      <th scope="col" style="width: 25%">Address</th>
-		      <th scope="col" style="width: 30%">Description</th>
-		      <th scope="col" style="width: 10%">Price</th>
-		      <th class="text-right" style="width: 10%">Actions</th>
-		    </tr>
-		</thead>
-		<tbody>
-		    <tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
-		      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</td>
-		      <td>@mdo</td>
-		      <td class="text-right">
-		      	<button type="button" class="btn btn-primary">Edit</button>
-		      	<button type="button" class="btn btn-danger">Delete</button>
-		      </td>
-		    </tr>
-		     <tr>
-		      <th scope="row">2</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
-		      <td>@mdo</td>
-		      <td>@mdo</td>
-		      <td class="text-right">
-		      	<button type="button" class="btn btn-primary">Edit</button>
-		      	<button type="button" class="btn btn-danger">Delete</button>
-		      </td>
-		    </tr>
-		</tbody>
-	</table>
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col" style="width: 5%">#</th>
+        <th scope="col" style="width: 20%">Name</th>
+        <th scope="col" style="width: 25%">Address</th>
+        <th scope="col" style="width: 10%">Price</th>
+        <th class="text-right" style="width: 10%">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="house: ${houses}">
+        <th scope="row" th:text="${house.id}">1</th>
+        <td th:text="${house.name}">Name</td>
+        <td th:text="${house.address}">Address</td>
+        <td th:text="${house.price}">Price</td>
+        <td class="text-right">
+            <a th:href="@{/house/{id}/edit(id=${house.id})}" class="btn btn-primary">Edit</a>
+            <a th:href="@{/house/{id}/delete(id=${house.id})}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
