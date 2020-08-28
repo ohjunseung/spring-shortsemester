@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -36,9 +37,9 @@ public class HouseController {
 
     @PostMapping(path = {"/", ""})
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(House house) {
+    public String create(House house, RedirectAttributes redirectAttributes) {
         repository.save(house);
-        return "house-index";
+        return "redirect:/house";
     }
 
     @GetMapping("/create")
@@ -56,20 +57,20 @@ public class HouseController {
     }
 
     @PostMapping("/{id}")
-    public String update(@PathVariable int id, House updatedHouse) {
+    public String update(@PathVariable int id, House updatedHouse, RedirectAttributes redirectAttributes) {
         Optional<House> house = repository.findById(id);
         if (house.isPresent() && id == updatedHouse.getId()) {
             System.out.println(updatedHouse);
             repository.save(updatedHouse);
-            return "house-index";
+            return "redirect:/house";
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
         try {
             repository.deleteById(id);
-            return "house-index";
+            return "redirect:/house";
         } catch (EmptyResultDataAccessException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
