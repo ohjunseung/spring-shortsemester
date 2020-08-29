@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
-@Controller //TODO Validation, Flash attributes
+@Controller //TODO Validation
 @RequestMapping("/house")
 public class HouseController {
     @Autowired
@@ -38,6 +38,7 @@ public class HouseController {
     @PostMapping(path = {"/", ""})
     public String create(@ModelAttribute House house, RedirectAttributes redirectAttributes) {
         repository.save(house);
+        redirectAttributes.addAttribute("msg", "House created!");
         return "redirect:/house";
     }
 
@@ -61,6 +62,7 @@ public class HouseController {
         Optional<House> house = repository.findById(id);
         if (house.isPresent()) {
             repository.save(updatedHouse);
+            redirectAttributes.addAttribute("msg", "House " + id + " updated!");
             return "redirect:/house";
         } else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
@@ -69,6 +71,7 @@ public class HouseController {
     public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
         try {
             repository.deleteById(id);
+            redirectAttributes.addAttribute("msg", "House " + id + " deleted!");
             return "redirect:/house";
         } catch (EmptyResultDataAccessException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

@@ -29,6 +29,9 @@
         </ul>
     </div>
 </nav>
+<div th:unless="${param.isEmpty()}" class="row justify-content-center">
+    <div class="alert alert-success col-6 col-lg-4 my-1 p-1 pl-2" role="alert" th:text="${param.msg}"></div>
+</div>
 <table class="table">
     <thead class="thead-light">
     <tr>
