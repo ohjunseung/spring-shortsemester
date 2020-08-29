@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Contact the Cult</title>
     <div th:replace="header"></div>
+    <style>
+	.form-container {
+		padding: 40px 20px 20px 20px;
+		border-radius: 10px;
+		box-shadow: 0px 0px 10px 0px #f1c40f;
+	}
+	.container-fluid {padding-top: 30px}
+
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1c40f;">
@@ -16,30 +25,40 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" th:href="@{/contacts}">Contact us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/register}"}>Register</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/house}">Admin Page</a>
+            </li>
         </ul>
     </div>
 </nav>
-<p>If you would like to work with us or simply want to drop us fan mail, please submit your email using the form below,
-    and we'll get back to you as soon as possible!
-    Thank you and have a great day!</p>
-<form class="form-container">
-    Name:
-    <input type="text"><br>
-    Email:
-    <input type="text"><br>
-    <button type="submit">Submit</button>
-</form>
+
+<div class="container-fluid row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-6">
+        <form class="form-container" action="mailto:jamcult@jamal.com" method="post" enctype="text/plain">
+            <h1>Contacts</h1>
+            <p>If you would like to work with us or simply want to drop us fan mail, please submit your email using the form below,
+                and we'll get back to you as soon as possible!
+                Thank you and have a great day!</p>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" id="name" name="name"><br>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" type="text" id="email" name="email"><br>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

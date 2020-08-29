@@ -18,7 +18,7 @@ public class MainController {
         model.addAttribute("houses", houses);
         return "index";
     }
-
+    //TODO Spring security
     @GetMapping("/register")
     public String register() {
         return "register";
