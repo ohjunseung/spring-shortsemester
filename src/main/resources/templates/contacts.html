@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Jemalcult Agency</title>
+    <meta charset="UTF-8">
+    <title>Contact the Cult</title>
     <div th:replace="header"></div>
 </head>
 <body>
@@ -30,9 +31,15 @@
         </ul>
     </div>
 </nav>
-<h1>Hello World</h1>
-<p th:each="house: ${houses}"><!--TODO Show Cards-->
-    [[${house}]]
-</p>
+<p>If you would like to work with us or simply want to drop us fan mail, please submit your email using the form below,
+    and we'll get back to you as soon as possible!
+    Thank you and have a great day!</p>
+<form class="form-container">
+    Name:
+    <input type="text"><br>
+    Email:
+    <input type="text"><br>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>

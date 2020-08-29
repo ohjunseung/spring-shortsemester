@@ -23,4 +23,9 @@ public class MainController {
     public String register() {
         return "register";
     }
+
+    @GetMapping("/contacts")
+    public String contacts(){
+        return "contacts";
+    }
 }
