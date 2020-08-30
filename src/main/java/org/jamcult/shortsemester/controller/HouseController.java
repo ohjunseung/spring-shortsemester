@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
-@Controller //TODO Validation
+@Controller
 @RequestMapping("/house")
 public class HouseController {
     @Autowired
@@ -58,7 +58,7 @@ public class HouseController {
     }
 
     @PostMapping("/{id}")
-    public String update(@PathVariable int id, House updatedHouse, RedirectAttributes redirectAttributes) {
+    public String update(@PathVariable int id, @ModelAttribute House updatedHouse, RedirectAttributes redirectAttributes) {
         Optional<House> house = repository.findById(id);
         if (house.isPresent()) {
             repository.save(updatedHouse);
