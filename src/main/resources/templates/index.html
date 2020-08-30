@@ -3,6 +3,12 @@
 <head>
     <title>Jemalcult Agency</title>
     <div th:replace="header"></div>
+    <style>
+        .card {
+            border-radius: 1rem;
+		    box-shadow: 0px 0px 10px 0px #f1c40f;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1c40f;">
@@ -22,7 +28,7 @@
                 <a class="nav-link" th:href="@{/contacts}">Contact us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/register}"}>Register</a>
+                <a class="nav-link" th:href="@{/register}" }>Register</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/house}">Admin Page</a>
@@ -30,9 +36,20 @@
         </ul>
     </div>
 </nav>
-<h1>Hello World</h1>
-<p th:each="house: ${houses}"><!--TODO Show Cards-->
-    [[${house}]]
-</p>
+<div class="container my-lg-2">
+    <div class="row justify-content-center">
+        <div class="col mx-auto my-3" th:each="house: ${houses}">
+            <div class="card" style="width: 18rem;">
+                <img th:src="@{/static/house-thumb.webp}" class="card-img-top" alt="House Icon">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${house.name}">Name</h5>
+                    <p class="card-text" th:text="${house.address}">Addr</p>
+                    <p class="card-text" th:text="${house.price}">Price</p>
+                    <a th:href="@{/house/{id}(id=${house.id})}">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

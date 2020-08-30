@@ -12,6 +12,7 @@
 	}
 	.container-fluid {padding-top: 30px}
 
+
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1c40f;">
@@ -31,7 +32,7 @@
                 <a class="nav-link" th:href="@{/contacts}">Contact us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/register}"}>Register</a>
+                <a class="nav-link" th:href="@{/register}" }>Register</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/house}">Admin Page</a>
@@ -44,6 +45,7 @@
     <section class="row justify-content-center">
         <section class="col-lg-8 col-md-8 col-sm-6">
             <div class="container">
+            <img th:src="@{/static/house-thumb.webp}" class="card-img-top" alt="House Icon" style="width:24rem">
                 <h1>Property details</h1><br>
                 <div>
                     <p><b>Name</b></p>
