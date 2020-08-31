@@ -52,7 +52,7 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${house.name}">Name</h5>
                     <p class="card-text" th:text="${house.address}">Addr</p>
-                    <p class="card-text" th:text="${house.price}">Price</p>
+                    <p class="card-text" th:inline="text">$[[${house.price}]]</p>
                     <a th:href="@{/house/{id}(id=${house.id})}">Details</a>
                 </div>
             </div>

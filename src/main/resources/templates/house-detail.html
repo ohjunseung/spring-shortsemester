@@ -63,7 +63,7 @@
                 </div>
                 <div>
                     <p><b>Price</b></p>
-                    <p th:text="${house.price}"></p>
+                    <p th:inline="text">$[[${house.price}]]</p>
                 </div>
             </div>
         </section>

@@ -56,7 +56,7 @@
             <a th:href="@{/house/{id}(id=${house.id})}" th:text="${house.name}">Name</a>
         </td>
         <td th:text="${house.address}">Address</td>
-        <td th:text="${house.price}">Price</td>
+        <td th:inline="text">$[[${house.price}]]</td>
         <td class="text-right">
             <a th:href="@{/house/{id}/edit(id=${house.id})}" class="btn btn-primary">Edit</a>
             <a th:href="@{/house/{id}/delete(id=${house.id})}" class="btn btn-danger">Delete</a>
