@@ -15,6 +15,7 @@ public class House {
     String desc;
     String address;
     double price;
+    String picture;
 
     public House() {}
 
@@ -62,6 +63,14 @@ public class House {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     @Override

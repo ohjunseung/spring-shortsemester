@@ -38,7 +38,9 @@
 <section class="container-fluid">
     <section class="row justify-content-center">
         <section class="col-lg-8 col-md-8 col-sm-6">
-            <form class="form-container" th:action="@{/house}" th:object="${house}" method="post">
+            <form class="form-container" th:action="@{/house}" th:object="${house}"
+                  enctype="multipart/form-data"
+                  method="post">
                 <h1>Add property</h1><br>
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -58,6 +60,11 @@
                     <label for="price">Price</label>
                     <input type="number" class="form-control" th:field="*{price}"
                            aria-describedby="Price" step="any">
+                </div>
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" name="file" id="file"
+                           aria-describedby="Picture">
+                    <label class="custom-file-label" for="file">Picture</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
