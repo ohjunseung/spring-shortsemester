@@ -14,6 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(authorize ->
                         authorize
                                 .mvcMatchers("/house").hasRole("ADMIN")
+                                .mvcMatchers("/house/create").hasRole("ADMIN")
                                 .mvcMatchers("/house/*/edit").hasRole("ADMIN")
                                 .mvcMatchers("/house/*/delete").hasRole("ADMIN")
                                 .mvcMatchers(HttpMethod.POST, "/house/*").hasRole("ADMIN")
