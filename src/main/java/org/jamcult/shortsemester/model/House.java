@@ -17,7 +17,8 @@ public class House {
     double price;
     String picture;
 
-    public House() {}
+    public House() {
+    }
 
     public House(String name, String address, double price) {
         this.name = name;

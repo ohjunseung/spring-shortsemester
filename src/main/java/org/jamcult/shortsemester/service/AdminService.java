@@ -40,7 +40,7 @@ public class AdminService implements UserDetailsService {
     }
 
     public Iterable<Admin> getAll() {
-       return adminRepository.findAll();
+        return adminRepository.findAll();
     }
 
     public Optional<Admin> getByID(Long id) {
