@@ -1,16 +1,24 @@
 package org.jamcult.shortsemester.controller;
 
+import org.jamcult.shortsemester.model.Admin;
 import org.jamcult.shortsemester.model.House;
 import org.jamcult.shortsemester.repository.HouseRepository;
+import org.jamcult.shortsemester.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MainController {
     @Autowired
     private HouseRepository houseRepository;
+
+    @Autowired
+    private AdminService adminService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -18,10 +26,18 @@ public class MainController {
         model.addAttribute("houses", houses);
         return "index";
     }
-    //TODO Spring security JdbcUserDetails
+
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("admin", new Admin());
         return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute Admin admin, RedirectAttributes redirectAttributes) {
+        adminService.signUp(admin);
+        redirectAttributes.addAttribute("msg", "New Admin created!");
+        return "redirect:/house";
     }
 
     @GetMapping("/login")
@@ -30,7 +46,7 @@ public class MainController {
     }
 
     @GetMapping("/contacts")
-    public String contacts(){
+    public String contacts() {
         return "contacts";
     }
 }

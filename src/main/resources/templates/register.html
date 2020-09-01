@@ -38,33 +38,30 @@
 	  </div>
 </nav>
 
-<section class="container-fluid">
-	<section class="row justify-content-center">
-		<section class="col-12 col-sm-6 col-md-3">
-	    	<form class="form-container">
-	    		<h1>Register here</h1><br>
-				<div class="form-group">
-				    <label for="exampleInputEmail">Email address</label>
-				    <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
-				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-				</div>
-				<div class="form-group">
-				    <label for="exampleInputPhone">Phone number</label>
-				    <input type="Phone" class="form-control" id="exampleInputPhone">
-				</div>
-				<div class="form-group">
-				    <label for="exampleInputPassword">Password</label>
-				    <input type="password" class="form-control" id="exampleInputPassword">
-				</div>
-				<div class="form-group form-check">
-				    <input type="checkbox" class="form-check-input" id="exampleCheck">
-				    <label class="form-check-label" for="exampleCheck">Check me out</label>
-				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
+	<section class="container-fluid">
+		<section class="row justify-content-center">
+			<section class="col-lg-4 col-md-6">
+				<form class="form-container" th:action="@{/register}" th:object="${admin}" method="post">
+					<h1>Register Here</h1><br>
+					<div th:if="${param.error}" class="alert alert-danger">
+						Invalid username and password.
+					</div>
+					<div th:if="${param.logout}" class="alert alert-success">
+						You have been logged out.
+					</div>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" th:field="*{username}">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" th:field="*{password}">
+					</div>
+					<button type="submit" class="btn btn-primary">Register</button>
+				</form>
+			</section>
 		</section>
 	</section>
-</section>
 
 </body>
 </html>
