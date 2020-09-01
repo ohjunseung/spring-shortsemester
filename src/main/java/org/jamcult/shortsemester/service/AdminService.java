@@ -34,4 +34,16 @@ public class AdminService implements UserDetailsService {
         );
         adminRepository.save(admin);
     }
+
+    public void deleteByID(Long id) {
+        adminRepository.deleteById(id);
+    }
+
+    public Iterable<Admin> getAll() {
+       return adminRepository.findAll();
+    }
+
+    public Optional<Admin> getByID(Long id) {
+        return adminRepository.findById(id);
+    }
 }

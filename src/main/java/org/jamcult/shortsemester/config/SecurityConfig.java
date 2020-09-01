@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 .mvcMatchers("/house/*/delete").hasRole("ADMIN")
                                 .mvcMatchers(HttpMethod.POST, "/house/*").hasRole("ADMIN")
                                 .mvcMatchers("/register").hasRole("ADMIN")
+                                .mvcMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().permitAll()
                 )
                 .formLogin()
