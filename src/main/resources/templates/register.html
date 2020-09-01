@@ -44,10 +44,7 @@
 				<form class="form-container" th:action="@{/register}" th:object="${admin}" method="post">
 					<h1>Register Here</h1><br>
 					<div th:if="${param.error}" class="alert alert-danger">
-						Invalid username and password.
-					</div>
-					<div th:if="${param.logout}" class="alert alert-success">
-						You have been logged out.
+						Invalid username and password, username maybe exist!
 					</div>
 					<div class="form-group">
 						<label for="username">Username</label>

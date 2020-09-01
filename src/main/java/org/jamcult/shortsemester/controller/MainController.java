@@ -5,6 +5,7 @@ import org.jamcult.shortsemester.model.House;
 import org.jamcult.shortsemester.repository.HouseRepository;
 import org.jamcult.shortsemester.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@Controller
+@Controller //TODO Admin page
 public class MainController {
     @Autowired
     private HouseRepository houseRepository;
@@ -35,9 +36,18 @@ public class MainController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute Admin admin, RedirectAttributes redirectAttributes) {
-        adminService.signUp(admin);
-        redirectAttributes.addAttribute("msg", "New Admin created!");
-        return "redirect:/house";
+        try {
+            if (admin.getPassword().chars().allMatch(Character::isWhitespace)
+                    || admin.getUsername().chars().allMatch(Character::isWhitespace)) {
+                throw new JpaSystemException(new RuntimeException());
+            }
+
+            adminService.signUp(admin);
+            redirectAttributes.addAttribute("msg", "New Admin created!");
+            return "redirect:/house";
+        } catch (JpaSystemException e) {
+            return "redirect:/register?error";
+        }
     }
 
     @GetMapping("/login")
